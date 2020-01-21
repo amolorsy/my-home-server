@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  samba:
+    image: dperson/samba
+    container_name: samba
+    environment:
+      TZ: 'Asia/Seoul'
+      USER: '${SAMBA_USERNAME};${SAMBA_PASSWORD}'
+      USERID: '${SAMBA_UID}'
+      GROUPID: '${SAMBA_GID}'
+      SHARE: 'shared;/mnt;yes;no;no;${SAMBA_USERNAME}'
+    ports:
+      - "139:139/tcp"
+      - "445:445/tcp"
+    restart: unless-stopped
+    volumes:
+      - ${SAMBA_MNT_DIR}:/mnt
