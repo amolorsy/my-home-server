@@ -9,10 +9,11 @@ services:
       USER: '${SAMBA_USERNAME};${SAMBA_PASSWORD}'
       USERID: '${SAMBA_UID}'
       GROUPID: '${SAMBA_GID}'
-      SHARE: 'shared;/mnt;yes;no;no;${SAMBA_USERNAME}'
     ports:
       - "139:139/tcp"
       - "445:445/tcp"
     restart: unless-stopped
     volumes:
-      - ${SAMBA_MNT_DIR}:/mnt
+      - ${SAMBA_MNT_SHARED_DIR}:/mnt/shared
+      - ${SAMBA_MNT_TIME_MACHINE_DIR}:/mnt/time-machine
+    command: -s "shared;/mnt/shared;yes;no;no;${SAMBA_USERNAME}" -s "time-machine;/mnt/time-machine;yes;no;no;${SAMBA_USERNAME}"
