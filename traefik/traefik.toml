@@ -5,8 +5,6 @@ defaultEntryPoints = ["http", "https"]
   address = ":80"
     [entryPoints.http.redirect]
     entryPoint = "https"
-    [entryPoints.http.forwardedHeaders]
-      trustedIPs = ["192.168.0.0/16"]
   [entryPoints.https]
   address = ":443"
     [entryPoints.https.tls]
@@ -21,5 +19,6 @@ exposedByDefault = false
 storage = "/etc/traefik/acme.json"
 onHostRule = true
 entryPoint = "https"
-  [acme.httpChallenge]
-  entryPoint = "http"
+  [acme.dnsChallenge]
+  provider = "cloudflare"
+  delayBeforeCheck = 0

@@ -11,4 +11,6 @@ services:
     ports:
       - 80:80
       - 443:443
-
+    environment:
+      - CLOUDFLARE_EMAIL=${CLOUDFLARE_EMAIL}
+      - CLOUDFLARE_API_KEY=${CLOUDFLARE_API_KEY}
