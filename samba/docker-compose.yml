@@ -14,6 +14,6 @@ services:
       - "445:445/tcp"
     restart: unless-stopped
     volumes:
-      - ${SAMBA_MNT_SHARED_DIR}:/mnt/shared
+      - ${SAMBA_MNT_HOME_DIR}:/mnt/home
       - ${SAMBA_MNT_TIME_MACHINE_DIR}:/mnt/time-machine
-    command: -s "shared;/mnt/shared;yes;no;no;${SAMBA_USERNAME}" -s "time-machine;/mnt/time-machine;yes;no;no;${SAMBA_USERNAME}"
+    command: -s "home;/mnt/home;yes;no;no;${SAMBA_USERNAME}" -s "time-machine;/mnt/time-machine;yes;no;no;${SAMBA_USERNAME}"
